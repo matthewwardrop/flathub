@@ -1,0 +1,49 @@
+id: com.immersed.Immersed
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+command: immersed
+finish-args:
+  - --socket=wayland
+  - --socket=x11
+  - --device=input
+  - --device=dri
+  - --share=ipc
+  - --share=network
+modules:
+  - name: unappimage
+    buildsystem: simple
+    build-commands:
+      - cd squashfs-tools && make INSTALL_DIR=/app/bin install
+    sources:
+    - type: git
+      url: https://github.com/refi64/unappimage
+      commit: d7f86f2a0d7ec3a69211125207d5f127386b849a
+  - name: immersed
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 -t /app/bin apply_extra immersed
+      - install -Dm644 com.immersed.Immersed.png /app/share/icons/hicolor/apps/com.immersed.Immersed.png
+      - install -Dm644 ${FLATPAK_ID}.desktop -t /app/share/applications/
+    sources:
+      - type: extra-data
+        filename: appimage
+        url: https://static.immersed.com/dl/Immersed-x86_64.AppImage
+        # Correct for Immersed 10.3.0
+        sha256: 1e2031b7e57c3bf341cd59102dee3ea11bc3561cf668b835385359f92cec4f52
+        size: 104378344
+      - type: script
+        dest-filename: apply_extra
+        commands:
+          - unappimage appimage
+          - mv -f squashfs-root/* .
+          - rm -rf appimage squashfs-root
+      - type: script
+        dest-filename: immersed
+        commands:
+          - export TMPDIR=$XDG_RUNTIME_DIR/app/$FLATPAK_ID
+          - /app/extra/AppRun
+      - type: file
+        path: com.immersed.Immersed.desktop
+      - type: file
+        path: icons/com.immersed.Immersed.png

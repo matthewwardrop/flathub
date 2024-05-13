@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Immersed
+Comment=Immersed VR server
+Icon=com.immersed.Immersed
+Exec=immersed
+Terminal=false
+Categories=Utility;
+StartupWMClass=Immersed

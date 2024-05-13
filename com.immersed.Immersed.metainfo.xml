@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>com.immersed.Immersed</id>
+
+    <name>Immersed Desktop Agent</name>
+    <summary>Used to stream your (virtual) monitors to the Immersed VR app</summary>
+    <developer id="tld.vendor">
+        <name>Immersed</name>
+    </developer>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>LicenseRef-proprietary=https://immersed.zendesk.com/hc/en-us</project_license>
+    <content_rating type="oars-1.1" />
+    <description>
+        <p>
+            Immersed is a productivity focused spatial computing application for
+            various virtual reality headsets; and this app is provides the desktop agent that allows
+            you to stream your computer's screens into the spatial environment.
+        </p>
+        <p>
+            NOTE: This app is an unofficial Flatpak distribution based on the official upstream
+            AppImage. This repackaging is not supported by Immersed, and bugs should not be reported
+            to Immersed unless they can be reproduced in the official AppImage client.
+        </p>
+    </description>
+    <url type="homepage">https://immersed.com/</url>
+    <url type="help">https://immersed.zendesk.com/hc/en-us</url>
+
+    <releases>
+        <release version="10.3.0" date="2024-05-10" />
+    </releases>
+
+    <launchable type="desktop-id">com.immersed.Immersed.desktop</launchable>
+</component>
